@@ -45,15 +45,16 @@
             background-color: #f0f0f0;
         }
 
-        #audioControl {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            background-color: #3498db;
-            color: #fff;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
+        #operationInfo {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .operation-sign {
+            font-size: 12px;
+            color: #777;
+            display: block;
         }
 
         #openTrtFm, #closeTrtFm {
@@ -68,25 +69,27 @@
         <button onclick="appendToDisplay('1')">1</button>
         <button onclick="appendToDisplay('2')">2</button>
         <button onclick="appendToDisplay('3')">3</button>
-        <button class="operator" onclick="appendToDisplay('/')">/</button>
+        <button class="operator" onclick="appendToDisplay('/')">/ <span class="operation-sign">(Bölme)</span></button>
         <br>
         <button onclick="appendToDisplay('4')">4</button>
         <button onclick="appendToDisplay('5')">5</button>
         <button onclick="appendToDisplay('6')">6</button>
-        <button class="operator" onclick="appendToDisplay('*')">*</button>
+        <button class="operator" onclick="appendToDisplay('*')">* <span class="operation-sign">(Çarpma)</span></button>
         <br>
         <button onclick="appendToDisplay('7')">7</button>
         <button onclick="appendToDisplay('8')">8</button>
         <button onclick="appendToDisplay('9')">9</button>
-        <button class="operator" onclick="appendToDisplay('-')">-</button>
+        <button class="operator" onclick="appendToDisplay('-')">-<span class="operation-sign">(Çıkarma)</span></button>
         <br>
         <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="appendDecimal()">.</button>
-        <button class="operator" onclick="calculateResult()">=</button>
-        <button class="operator" onclick="appendToDisplay('+')">+</button>
+        <button class="operator" onclick="calculateResult()">= <span class="operation-sign">(Eşittir)</span></button>
+        <button class="operator" onclick="appendToDisplay('+')">+ <span class="operation-sign">(Toplama)</span></button>
+        <button class="operator" onclick="calculateSquareRoot()">√ <span class="operation-sign">(Karekök)</span></button>
         <br>
         <button class="operator" onclick="clearDisplay()">C</button>
         <button class="operator" onclick="backspace()">&larr;</button>
+        <br>
+        <button onclick="solveEquation()">Denklem</button>
         <br>
         <button id="openTrtFm" onclick="openTrtFm()">TRT FM Aç</button>
         <button id="closeTrtFm" onclick="closeTrtFm()">TRT FM Kapat</button>
@@ -118,34 +121,52 @@
             display.value = display.value.slice(0, -1);
         }
 
-        function openTrtFm() {
-            if (!trtFmPlaying) {
-                trtFmPlaying = true;
-                alert('TRT FM şu anda açılıyor...');
-                audioPlayer = new Audio('https://radio-trtfm.live.trt.com.tr/master.m3u8');
-                audioPlayer.play();
+        function calculateSquareRoot() {
+            const display = document.getElementById('display');
+            const currentValue = parseFloat(display.value);
+
+            if (!isNaN(currentValue)) {
+                const result = Math.sqrt(currentValue);
+                document.getElementById('display').value = result;
             } else {
-                alert('TRT FM zaten açık, bir daha açmanıza gerek yok.');
+                document.getElementById('display').value = 'Hata';
+            }
+        }
+
+        function solveEquation() {
+            const display = document.getElementById('display');
+            const equation = prompt('Denklemi girin:');
+
+            if (equation !== null) {
+                try {
+                    const result = eval(equation);
+                    document.getElementById('display').value = result;
+                } catch (error) {
+                    document.getElementById('display').value = 'Hata';
+                }
+            }
+        }
+
+        function openTrtFm() {
+            const trtFmStream = 'https://radio-trtfm.live.trt.com.tr/master.m3u8';
+            audioPlayer = new Audio(trtFmStream);
+
+            if (!trtFmPlaying) {
+                audioPlayer.play();
+                alert('TRT FM açılıyor.');
+                trtFmPlaying = true;
+            } else {
+                alert('TRT FM zaten açık.');
             }
         }
 
         function closeTrtFm() {
             if (trtFmPlaying) {
-                trtFmPlaying = false;
-                alert('TRT FM kapatılıyor...');
                 audioPlayer.pause();
+                alert('TRT FM kapatılıyor.');
+                trtFmPlaying = false;
             } else {
-                alert('TRT FM zaten kapalı, bir daha kapatmanıza gerek yok.');
-            }
-        }
-
-        function appendDecimal() {
-            const display = document.getElementById('display');
-            const lastChar = display.value.slice(-1);
-
-            // Avoid multiple decimals
-            if (!display.value.includes('.') || !'+-*/'.includes(lastChar)) {
-                appendToDisplay('.');
+                alert('TRT FM zaten kapalı.');
             }
         }
     </script>
