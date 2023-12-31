@@ -38,6 +38,7 @@
             margin: 5px;
             font-size: 18px;
             cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .operator {
@@ -53,6 +54,10 @@
             font-size: 16px;
             border: none;
             cursor: pointer;
+        }
+
+        #openTrtFm, #closeTrtFm {
+            width: 40%;
         }
     </style>
 </head>
@@ -82,6 +87,7 @@
         <br>
         <button class="operator" onclick="clearDisplay()">C</button>
         <button class="operator" onclick="backspace()">&larr;</button>
+        <br>
         <button id="openTrtFm" onclick="openTrtFm()">TRT FM Aç</button>
         <button id="closeTrtFm" onclick="closeTrtFm()">TRT FM Kapat</button>
     </div>
