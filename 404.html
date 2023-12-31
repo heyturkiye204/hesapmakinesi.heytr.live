@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/tr/8/85/Apple_Hesap_makinesi_Calculator-icon.png" type="image/x-icon" >
     <title>Hesap Makinesi</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -86,9 +87,8 @@
         <button class="operator" onclick="appendToDisplay('+')">+ <span class="operation-sign">(Toplama)</span></button>
         <button class="operator" onclick="calculateSquareRoot()">√ <span class="operation-sign">(Karekök)</span></button>
         <br>
-        <button class="operator" onclick="clearDisplay()">C</button>
-        <button class="operator" onclick="backspace()">&larr;</button>
-        <br>
+        <button class="operator" onclick="clearDisplay()">C <span class="operation-sign">(Temizle)</span></button>
+        <button class="operator" onclick="backspace()">&larr; <span class="operation-sign">(Geri Al)</span></button>
         <button onclick="solveEquation()">Denklem</button>
         <br>
         <button id="openTrtFm" onclick="openTrtFm()">TRT FM Aç</button>
@@ -108,7 +108,7 @@
                 const result = eval(document.getElementById('display').value);
                 document.getElementById('display').value = result;
             } catch (error) {
-                document.getElementById('display').value = 'Hata';
+                document.getElementById('display').value = 'Yanlış Hesap Yapıldı!';
             }
         }
 
@@ -129,7 +129,7 @@
                 const result = Math.sqrt(currentValue);
                 document.getElementById('display').value = result;
             } else {
-                document.getElementById('display').value = 'Hata';
+                document.getElementById('display').value = 'Yanlış Hesap Yapıldı!';
             }
         }
 
@@ -142,7 +142,7 @@
                     const result = eval(equation);
                     document.getElementById('display').value = result;
                 } catch (error) {
-                    document.getElementById('display').value = 'Hata';
+                    document.getElementById('display').value = 'Yanlış hesap Yapıldı!';
                 }
             }
         }
@@ -153,20 +153,20 @@
 
             if (!trtFmPlaying) {
                 audioPlayer.play();
-                alert('TRT FM açılıyor.');
+                alert('TRT FM açılıyor...');
                 trtFmPlaying = true;
             } else {
-                alert('TRT FM zaten açık.');
+                alert('TRT FM zaten açık. Bir daha açmanıza gerek yok.');
             }
         }
 
         function closeTrtFm() {
             if (trtFmPlaying) {
                 audioPlayer.pause();
-                alert('TRT FM kapatılıyor.');
+                alert('TRT FM kapatılıyor...');
                 trtFmPlaying = false;
             } else {
-                alert('TRT FM zaten kapalı.');
+                alert('TRT FM zaten kapalı. Bir daha kapatmanıza gerek yok.');
             }
         }
     </script>
