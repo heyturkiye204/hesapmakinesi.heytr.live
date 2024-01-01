@@ -61,6 +61,9 @@
         #openTrtFm, #closeTrtFm {
             width: 40%;
         }
+        #openMgmFm, #closeMgmFm {
+            width: 40%;
+        }
     </style>
 </head>
 <body>
@@ -176,7 +179,7 @@
             const mgmFmStream = 'https://www.mgm.gov.tr/Files/mp3/hava.mp3';
             audioPlayer = new Audio(trtFmStream);
 
-            if (!trtFmPlaying) {
+            if (!mgmFmPlaying) {
                 audioPlayer.play();
                 alert('MGM FM açılıyor...');
                 mgmFmPlaying = true;
@@ -186,7 +189,7 @@
         }
 
         function closeMgmFm() {
-            if (trtFmPlaying) {
+            if (mgmFmPlaying) {
                 audioPlayer.pause();
                 alert('MGM FM kapatılıyor...');
                 mgmFmPlaying = false;
