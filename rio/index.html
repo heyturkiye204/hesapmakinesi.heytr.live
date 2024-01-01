@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastgele Erkek İsim ve Soyadı Oluşturucu</title>
+  <script>
+    function rastgeleIsimOlustur() {
+      var erkekIsimleri = [
+        "Ozan", "Emre", "Can", "Burak", "Serkan", "Mustafa", "Ahmet", "Mert", "Cem", "Tolga",
+        "Rahman", "Selim", "Kerem", "Umut", "Barış", "Ege", "Furkan", "Yunus", "Kaan", "Levent",
+        "Arda", "İsmet", "Hakan", "Kürşat", "Caner", "Tarkan", "Cihan", "Gökhan", "Volkan", "Yasin",
+        "Engin", "Yavuz", "Efe", "Alp", "Berk", "Kuzey", "Ömer", "Taylan", "Tarık", "Burhan",
+        "Onur", "Kaan", "Deniz", "Uğur", "Emir", "İlker", "Ercan", "Burak", "Batuhan", "Yiğit",
+        "Serkan", "Kemal", "Fikret", "Yavuz", "Eray", "Metin", "Oğuz", "Alihan", "Hüseyin", "Emin",
+        "Atalay", "Mehmet", "Erkan", "Yalın", "Burak", "Erdinç", "Erdem", "Kaya", "Ahmet", "Gürkan",
+        "Bilge", "Murat", "Oğuzhan", "Halit", "Gökay", "Kaan", "Ertan", "Mert", "Cihan", "İlkay",
+        "Tolga", "Caner", "Mertcan", "Ege", "Yiğit", "Sercan", "Yalın", "Orhan", "Hakan", "Oktay",
+        "Ufuk", "Kaan", "Furkan", "Cemil", "Tunahan", "Emirhan", "Berkay", "Sedat", "Mehmet Ali", "Sefa"
+      ];
+
+      var soyadlari = [
+        "Yılmaz", "Demir", "Kaya", "Erdem", "Çelik", "Şahin", "Aktaş", "Koç", "Arslan", "Kurt",
+        "Aslan", "Ünal", "Yavuz", "Erbay", "Güneş", "Özdemir", "Doğan", "Acar", "Taş", "Kaplan",
+        "Karahan", "Kılıç", "Çakır", "Koçak", "Cengiz", "Demirci", "Bulut", "Kurtuluş", "Gür",
+        "Gündüz", "Duman", "Toprak", "Yalçın", "Özkan", "Gümüş", "Türk", "Yıldırım", "Sarı", "Köse",
+        "Çetin", "Bulut", "Karakaş", "Şimşek", "Aksoy", "Durmaz", "Eren", "Sönmez", "Ateş", "Gürsoy",
+        "Büyük", "Tahtacı", "Savaş", "Yazar", "Şahbaz", "Kılıçaslan", "Kara", "İnce", "Efe", "Öztürk",
+        "Demirtaş", "Yıldız", "Yaman", "Gürbüz", "Güngör", "Aygün", "Karaaslan", "Kurtul", "Çetinkaya", "Keskin",
+        "Ergün", "Akın", "Güzel", "Ulu", "Güler", "Genç", "Aslan", "Savaş", "Çoban", "Dinçer",
+        "Yıldızoğlu", "Şimşekoğlu", "Demirkan", "Bilgen", "Gökgöz", "Aslankaya", "Ercan", "Gündüz", "Özgür", "Erdoğan",
+        "Yüksek", "Korkmaz", "Kalemköy", "Sezginer", "Sakarya", "Bağcıvan", "Kaya", "Özen", "Al", "Kurt" 
+      ];
+
+      var randomErkekIsim = erkekIsimleri[Math.floor(Math.random() * erkekIsimleri.length)];
+      var randomSoyad = soyadlari[Math.floor(Math.random() * soyadlari.length)];
+      var siraNo = erkekIsimleri.indexOf(randomErkekIsim) + 1;
+
+      var isimSoyad = siraNo + ". " + randomErkekIsim + " " + randomSoyad;
+      var email = siraNo + "." + (randomErkekIsim + randomSoyad).toLowerCase() + "@heytr.live";
+
+      document.getElementById("isimSoyad").innerHTML = isimSoyad;
+      document.getElementById("email").innerHTML = email;
+    }
+  </script>
+</head>
+<body>
+  <h1>Rastgele Erkek İsim ve Soyadı Oluşturucu</h1>
+  <button onclick="rastgeleIsimOlustur()">Yeni İsim Oluştur</button>
+  <p id="isimSoyad"></p>
+  <p id="email"></p>
+</body>
+</html>
