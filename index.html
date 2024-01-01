@@ -93,6 +93,8 @@
         <br>
         <button id="openTrtFm" onclick="openTrtFm()">TRT FM Aç</button>
         <button id="closeTrtFm" onclick="closeTrtFm()">TRT FM Kapat</button>
+        <button id="openMgmFm" onclick="openMgmFm()">MGM FM Aç</button>
+        <button id="closeMgmFm" onclick="closeMgmFm()">MGM FM Kapat</button>
     </div>
 
     <script>
@@ -167,6 +169,29 @@
                 trtFmPlaying = false;
             } else {
                 alert('TRT FM zaten kapalı. Bir daha kapatmanıza gerek yok.');
+            }
+        }
+        
+        function openMgmFm() {
+            const mgmFmStream = 'https://www.mgm.gov.tr/Files/mp3/hava.mp3';
+            audioPlayer = new Audio(trtFmStream);
+
+            if (!trtFmPlaying) {
+                audioPlayer.play();
+                alert('MGM FM açılıyor...');
+                mgmFmPlaying = true;
+            } else {
+                alert('MGM FM zaten açık. Bir daha açmanıza gerek yok.');
+            }
+        }
+
+        function closeMgmFm() {
+            if (trtFmPlaying) {
+                audioPlayer.pause();
+                alert('MGM FM kapatılıyor...');
+                mgmFmPlaying = false;
+            } else {
+                alert('MGM FM zaten kapalı. Bir daha kapatmanıza gerek yok.');
             }
         }
     </script>
